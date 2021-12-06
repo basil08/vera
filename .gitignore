@@ -1,0 +1,6 @@
+.env
+*.swp
+*.tmp
+*~
+node_modules/
+.deta/
