@@ -10,7 +10,9 @@ const constructList = () => {
           const p = document.createElement("p");
           p.innerHTML = "No droplets! Go create some!";
           info.appendChild(p);
+          info.className = "";
         } else {
+          console.log(info.className);
           for (droplet of json) {
             const checkbox = document.createElement("input");
             checkbox.setAttribute("type", "checkbox");
@@ -40,7 +42,7 @@ const constructList = () => {
           })
           // TODO: handle later and inform user gracefully
           // Good UI/UX
-          
+          location.reload();
 
         })
       });

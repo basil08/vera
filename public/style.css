@@ -1,5 +1,6 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
+  list-style-type: none;
 }
 
 
@@ -67,6 +68,28 @@ input[type=submit] {
     margin-top: 0;
   }
 } 
+
+/*
+
+NAVBAR 
+*/
+
+nav {
+  display: flex;
+}
+
+nav ul {
+  padding: 20px;
+  font-size: large;
+  border: none;
+  background-color: rgb(151, 170, 216);
+  border-radius: 5px;
+}
+
+nav ul li a {
+  text-decoration: none;
+}
+
 /*
 
 DELETE 
@@ -78,6 +101,10 @@ DELETE
   margin: 1em;
   color: red;
   background-color: pink;
+}
+
+.hide {
+  visibility: hidden;
 }
 
 button#confirm {
