@@ -7,12 +7,13 @@
 </head>
 
 <body>
-  <h1>Vera | Create New Droplet!</h1>
   <nav>
     <ul>
-      <li><a href="/delete">Delete</a></li>
+      <li><a href="/delete">Read/Delete</a></li>
     </ul>
   </nav>
+  <h1>Vera | Create New Droplet!</h1>
+  <p>Droplets can only be created by admins. To become an admin, contact <a href="mailto:gs454236@gmail.com">here</a>.</p>
   <div class="container">
     <form method="POST" action="/create">
       <div class="row">
@@ -37,6 +38,14 @@
         </div>
         <div class="col-75">
           <input type="text" id="datetime" name="datetime" placeholder="Timestamp">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="password">Passcode</label>
+        </div>
+        <div class="col-75">
+          <input type="password" id="password" name="password" placeholder="******">
         </div>
       </div>
       <div class="row">

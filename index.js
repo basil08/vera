@@ -4,15 +4,25 @@ const path = require("path");
 const app = express();
 
 // TODO:
-// authentication on deta server
+// ~~authentication on deta server~~
+// Rudimentary authentication just to prevent DDoS
+// Implement JWT express middleware
+// 
 // add imgs, urls field to form
+// 
 // ~~/delete~~
+// 
 // on successful deletion, display snackbar or banner
+// 
 // /update
+// 
 // more robust front end for forms, deletion etc
+// 
 // Like functionality
+// 
 // on each new droplet creation, trigger hugo build using GH API
-
+//
+// Refactor: organize routes into a module and do app.use("/", routes);
 
 // STREAM consists of DROPLETS ;)
 // DROPLET SCHEMA
@@ -35,6 +45,8 @@ const dropletSchema = new mongoose.Schema({
 const Droplet = mongoose.model("Droplet", dropletSchema, "droplets");
 
 const dbUrl = process.env.MONGO_URL || "mongodb://localhost:27017/vera"
+// used only in local dev/testing environments
+// deta only requires app to be exported
 const port = process.env.VERA_PORT || 10100
 
 console.log("DB URL:", dbUrl);
@@ -57,6 +69,12 @@ app.get('/delete', (req, res, next) => {
 
 app.post("/delete", async (req, res, next) => {
   const ids = req.body;
+  const password = ids.pop();
+
+  if (password !== process.env.PASS) {
+    return res.status(403).send("Forbidden! Deletion is a privileged operation!")
+  }
+
   try {
     const dbResponse = await Droplet.deleteMany({
       _id: {
@@ -91,6 +109,10 @@ app.post('/create', async (req, res) => {
   }
 
   const now = new Date().toLocaleString();
+  
+  if (body.password !== process.env.PASS) {
+    return res.status(403).send("Forbidden! This is a privileged operation!");
+  }
 
   const droplet = new Droplet({
     title: body.title ? body.title : null,
@@ -111,6 +133,8 @@ app.use('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 })
 
+// set ENV only in test env
+// npm script takes care of that, just run `npm run dev`
 if (process.env.ENV === 'test') {
   app.listen(port, () => {
     console.log(`[+] Listening on port ${port}`)

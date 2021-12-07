@@ -10,12 +10,21 @@
         <li><a href="/">Create New Droplet!</a></li>
       </ul>
     </nav>
-    <h1>Vera | Delete Droplets</h1>
+    <h1>Vera | Read Droplets</h1>
     <p>Delete one or many! Click on DELETE to delete. Refresh page to see changes!</p>
+    <p><strong>NOTE:</strong> Deletion is a privileged operation for admins only.</p>
     <ul id="list">
     </ul>
     <div id="banner"></div>
     <div id="info" class="hide"></div>
+    <div class="row">
+          <div class="col-25">
+            <label for="password">Passcode</label>
+          </div>
+          <div class="col-75">
+            <input type="password" id="password" name="password" placeholder="******">
+          </div>
+    </div>
     <button id="confirm">DELETE!</button>
   
     <script src="delete.js"></script>

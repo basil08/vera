@@ -33,6 +33,8 @@ const constructList = () => {
           const selected = document.querySelectorAll("input[type=checkbox]:checked");
           const ids = [] // use .map but selected is not Array, its NodeList :')
           for (s of selected) { ids.push(s.id) }
+          // TODO: Encrypt this FFS
+          ids.push(document.getElementById("password").value);
           const response = await fetch("/delete", {
             method: 'POST',
             headers: {

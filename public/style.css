@@ -14,6 +14,15 @@ input[type=text], select, textarea{
   resize: vertical;
 }
 
+input[type=password] {
+   width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
 /* Style the label to display next to the inputs */
 label {
   padding: 12px 12px 12px 0;
@@ -79,7 +88,7 @@ nav {
 }
 
 nav ul {
-  padding: 20px;
+  padding: 12px 20px;
   font-size: large;
   border: none;
   background-color: rgb(151, 170, 216);
