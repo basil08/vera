@@ -33,7 +33,12 @@ const dropletSchema = new mongoose.Schema({
 
 const Droplet = mongoose.model("Droplet", dropletSchema, "droplets");
 
-mongoose.connect(process.env.MONGO_URL);
+const dbUrl = process.env.MONGO_URL || "mongodb://localhost:27017/vera"
+const port = process.env.VERA_PORT || 10100
+
+console.log("DB URL:", dbUrl);
+
+mongoose.connect(dbUrl);
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -83,5 +88,11 @@ app.use('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, "public", "form.html"));
 })
 
-// export 'app'
-module.exports = app
+if (process.env.ENV === 'test') {
+  app.listen(port, () => {
+    console.log(`[+] Listening on port ${port}`)
+  })
+} else {
+  // export 'app'
+  module.exports = app
+}
