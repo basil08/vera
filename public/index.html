@@ -8,6 +8,11 @@
 
 <body>
   <h1>Vera | Create New Droplet!</h1>
+  <nav>
+    <ul>
+      <li><a href="/delete">Delete</a></li>
+    </ul>
+  </nav>
   <div class="container">
     <form method="POST" action="/create">
       <div class="row">
@@ -42,7 +47,7 @@
 
   <script>
     document.getElementById("datetime").value = new Date().toLocaleString();
-    console.log("done: ", new Date().toLocaleString());
   </script>
 </body>
+
 </html>

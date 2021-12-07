@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "export ENV=test && node index.js",
+    "dev": "export ENV=test && nodemon --watch public --ext js,mjs,json,html,css index.js",
+    "deploy": "deta update -e .env && deta deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,5 +14,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^6.0.14"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

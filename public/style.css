@@ -67,3 +67,25 @@ input[type=submit] {
     margin-top: 0;
   }
 } 
+/*
+
+DELETE 
+
+*/
+
+#info {
+  padding: 1em;
+  margin: 1em;
+  color: red;
+  background-color: pink;
+}
+
+button#confirm {
+  padding: 12px 20px;
+  margin: .75em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  background-color: red;
+}
