@@ -47,7 +47,6 @@ const constructList = () => {
         const selected = document.querySelectorAll(".toggle:checked");
         const ids = [] // use .map but selected is not Array, its NodeList :')
         for (s of selected) { ids.push(s.id) }
-        console.log(ids);
         // TODO: Encrypt this FFS
         ids.push(document.getElementById("password").value);
         const response = await fetch("/delete", {
