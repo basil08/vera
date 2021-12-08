@@ -40,15 +40,15 @@ A test version of Vera is hosted on the awesome [Deta][2] platform. If you're a 
 ## ROADMAP 
 
 [] Add URL field to forms. Allow preview/banner during stream rendering.  
-[X] Style droplet list elements in delete.html
-[X] Add footer
-[] On successful deletion, display response snackbar/banner.
-[] BE: Implement /update
-[] UI: Style navbar
-[] UI: Implement Like functionality
-[] On each new droplet creation, trigger build action using GH API
-[] Refactor: Organize routes into a module (`app.use("/", routes)`)
-[] Add CONTRIBUTING, LICENSE, and links to them in README
+[X] Style droplet list elements in delete.html   
+[X] Add footer    
+[] On successful deletion, display response snackbar/banner.   
+[] BE: Implement /update   
+[] UI: Style navbar    
+[] UI: Implement Like functionality   
+[] On each new droplet creation, trigger build action using GH API    
+[] Refactor: Organize routes into a module (`app.use("/", routes)`)   
+[] Add CONTRIBUTING, LICENSE, and links to them in README    
 
 ## FEATURES & TODOs 
 
