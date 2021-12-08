@@ -3,28 +3,6 @@ const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
 
-// TODO:
-// ~~authentication on deta server~~
-// Rudimentary authentication just to prevent DDoS
-// Implement JWT express middleware
-// 
-// add imgs, urls field to form
-// 
-// ~~/delete~~
-// 
-// on successful deletion, display snackbar or banner
-// 
-// /update
-// 
-// more robust front end for forms, deletion etc
-// 
-// Like functionality
-// 
-// on each new droplet creation, trigger hugo build using GH API
-//
-// Refactor: organize routes into a module and do app.use("/", routes);
-
-// STREAM consists of DROPLETS ;)
 // DROPLET SCHEMA
 // ts: string
 // title: string (optional)
@@ -56,7 +34,7 @@ mongoose.connect(dbUrl);
 // delete works by sending an Array of droplet IDs to the server
 // uses mongoose.deleteMany(_id: { $in: Array })
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/payload', async (req, res) => {
@@ -102,18 +80,20 @@ app.post('/create', async (req, res) => {
     return res.status(400).json(body);
   }
 
+  let imageURLs = [];
+
   if (body.imgs) {
-    const imageURLs = body.imgs.split(",")
+    imageURLs = body.imgs.split(",")
       .map(url => url.trim());
   }
-  
+
   if (body.urls) {
     const urls = body.urls.split(",")
       .map(url => url.trim());
   }
 
   const now = new Date().toLocaleString();
-  
+
   if (body.password !== process.env.PASS) {
     return res.status(403).send("Forbidden! This is a privileged operation!");
   }
@@ -122,9 +102,9 @@ app.post('/create', async (req, res) => {
     title: body.title ? body.title : null,
     body: body.body,
     likes: 0,
-    imgs: [],
+    imgs: body.imgs ? imageURLs : [],
     urls: [],
-    ts: body.datetime 
+    ts: body.datetime
   });
 
   await droplet.save();
@@ -143,7 +123,7 @@ if (process.env.ENV === 'test') {
   app.listen(port, () => {
     console.log(`[+] Listening on port ${port}`)
   })
-} else {
-  // export 'app'
-  module.exports = app
 }
+
+// export the 'app'
+module.exports = app;

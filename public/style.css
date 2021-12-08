@@ -80,6 +80,15 @@ input[type=submit] {
 
 /*
 
+FOOTER
+*/
+
+footer {
+  text-align: center;
+}
+
+/*
+
 NAVBAR 
 */
 
@@ -124,4 +133,24 @@ button#confirm {
   cursor: pointer;
   color: white;
   background-color: red;
+}
+
+
+.delete-droplet-div {
+  padding: 12px 20px;
+  background-color: antiquewhite;
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute;
+  left: -100vw;
+}
+
+.inner-checkbox-div::after {
+  content: "🔴";
+}
+
+.toggle:checked ~ .inner-checkbox-div::after {
+  content: "🟢"
 }

@@ -21,7 +21,7 @@
           <label for="body">Body</label>
         </div>
         <div class="col-75">
-          <textarea id="body" name="body" placeholder="Write something.." style="height:200px"></textarea>
+          <textarea id="body" name="body" placeholder="Write something (Markdown supported!)" style="height:200px"></textarea>
         </div>
       </div>
       <div class="row">
@@ -30,6 +30,14 @@
         </div>
         <div class="col-75">
           <input type="text" id="title" name="title" placeholder="Title (Optional)">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="imgs">Image URLs</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="imgs" name="imgs" placeholder="Image URLs (separated by commas)">
         </div>
       </div>
       <div class="row">
@@ -54,6 +62,7 @@
     </form>
   </div>
 
+  <footer>&copy; 2021 | Made with ❤️ by <a href="https://github.com/basil08">Basil Labib</a>.</footer>
   <script>
     document.getElementById("datetime").value = new Date().toLocaleString();
   </script>
