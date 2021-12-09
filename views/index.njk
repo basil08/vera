@@ -1,0 +1,30 @@
+{% extends "base.njk" %}
+{% import "macros/head.njk" as head %}
+
+{% block head %}
+{{ head.head() }}
+{% endblock %}
+
+{% block header %}
+<nav>
+  <ul>
+    <li><a href="/delete">Read/Delete</a></li>
+  </ul>
+</nav>
+<h1>Vera | Create New Droplet!</h1>
+<p>Droplets can only be created by admins. To become an admin, contact <a href="mailto:gs454236@gmail.com">here</a>.</p>
+{% endblock %}
+
+{% block main %}
+ {% include "partials/create_form.njk" %}
+
+ {% block scripts %}
+  <script>
+      document.getElementById("datetime").value = new Date().toLocaleString();
+  </script>
+ {% endblock %}
+{% endblock %}
+
+{% block footer %}
+ {% include "partials/footer.njk" %}
+{% endblock %}

@@ -1,0 +1,7 @@
+{% macro head(pathToBaseCSS="./css/style.css", pathToCSS) %}
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{{ pathToBaseCSS }}">
+  {% if pathToCSS %}
+  <link rel="stylesheet" href="{{ pathToCSS }}">
+  {% endif %}
+{% endmacro %}

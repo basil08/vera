@@ -1,15 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
+const nunjucks = require("nunjucks");
 const app = express();
 
-// DROPLET SCHEMA
-// ts: string
-// title: string (optional)
-// body: string
-// imgs: [string] (optional)
-// urls: [string] (optional)
-// likes: int
+/**
+ * DROPLET SCHEMA
+ * ts: string
+ * title: string (optional)
+ * body: string
+ * imgs: [string] (optional)
+ * urls: [string] (optional)
+ * likes: int
+ */
 
 const dropletSchema = new mongoose.Schema({
   title: String,
@@ -18,6 +21,13 @@ const dropletSchema = new mongoose.Schema({
   urls: [String],
   likes: Number,
   ts: String      // TODO: change to Date
+});
+
+// Nunjucks Templating Engine
+// Check the docs here: https://mozilla.github.io/nunjucks/getting-started.html
+nunjucks.configure( 'views', { 
+  autoescape: true,
+  express: app
 });
 
 const Droplet = mongoose.model("Droplet", dropletSchema, "droplets");
@@ -35,7 +45,7 @@ mongoose.connect(dbUrl);
 // uses mongoose.deleteMany(_id: { $in: Array })
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'views')));
 
 app.get('/payload', async (req, res) => {
   const droplets = await Droplet.find();
@@ -43,8 +53,9 @@ app.get('/payload', async (req, res) => {
   return res.json(droplets);
 });
 
-app.get('/delete', (req, res, next) => {
-  res.sendFile(path.join(__dirname, "public", "delete.html"));
+app.get('/delete', async (req, res, next) => {
+  const payload = await Droplet.find();
+  res.render("delete.njk", { payload });
 })
 
 app.post("/delete", async (req, res, next) => {
@@ -62,9 +73,10 @@ app.post("/delete", async (req, res, next) => {
       }
     });
 
+    console.log(dbResponse);
     // TODO: not working as expected. Look into it :)
     const deleteStatus = encodeURIComponent(dbResponse.deletedCount);
-    res.redirect("/delete?count=" + deleteStatus);
+    res.send(dbResponse);
   } catch (err) {
     console.err(err);
     next();
@@ -114,7 +126,7 @@ app.post('/create', async (req, res) => {
 })
 
 app.use('/', (req, res, next) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.render("index.njk");
 })
 
 // set ENV only in test env

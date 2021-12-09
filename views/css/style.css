@@ -114,16 +114,16 @@ DELETE
 
 */
 
-#info {
+.info {
   padding: 1em;
   margin: 1em;
+}
+
+.critical {
   color: red;
   background-color: pink;
 }
 
-.hide {
-  visibility: hidden;
-}
 
 button#confirm {
   padding: 12px 20px;
@@ -153,4 +153,16 @@ button#confirm {
 
 .toggle:checked ~ .inner-checkbox-div::after {
   content: "🟢"
+}
+
+/*
+
+BANNER
+
+TODO: Style this banner
+(ugh, css...yuck)
+*/
+#banner {
+  position: absolute;
+  
 }

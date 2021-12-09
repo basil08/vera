@@ -52,22 +52,25 @@ A test version of Vera is hosted on the awesome [Deta][2] platform. If you're a 
 
 ## FEATURES & TODOs 
 
-1. Explore templating engines such as [Jade][0] or [Jinja2][1].
-2. Implement JWT Authentication middleware.
-3. Design: Redesign UI
-
+~~1. Explore templating engines such as [Jade][0] or [Jinja2][1]~~ (Using [nunjucks][5]!)   
+2. Implement JWT Authentication middleware.   
+3. Design: Redesign UI    
+4. Migrate codebase to TypeScript    
 ## CONTRIBUTE   
 
 Glad that you're interested in supporting Vera!  
 
-We accept technical code contributions (see Issues tab), documentation, and even examples. Vera is written in JavaScript, Express, Mongoose (MongoDB) on the backend and vanilla HTML/CSS on the frontend it offers. We are planning to migrate to TypeScript and a templating engine in the future. Read the [CONTRIBUTING.md] before opening a PR!    
+We accept technical code contributions (see Issues tab), documentation, and even examples. Vera is written in JavaScript, Express, Mongoose (MongoDB) on the backend and vanilla HTML/CSS on the frontend it offers. We are planning to migrate to TypeScript and a templating engine in the future. Read the [CONTRIBUTING.md][6] before opening a PR!    
 
 ## LICENSE 
 
-The Vera source code is distributed under the [MIT] License.  
+The Vera source code is distributed under the [MIT][7] License.  
 
 [0]: https://jade-lang.com
 [1]: https://jinja.palletprojects.com
 [2]: https://deta.dev
 [3]: https://www.mongodb.com/cloud/atlas/
 [4]: https://mlab.com
+[5]: https://mozilla.github.io/nunjucks/getting-started.html
+[6]: /CONTRIBUTING.md
+[7]: /LICENSE

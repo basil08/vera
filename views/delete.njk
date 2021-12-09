@@ -1,0 +1,68 @@
+{% extends "base.njk" %}
+{% import "macros/head.njk" as head %}
+
+{% block head %}
+{{ head.head() }}
+{% endblock %}
+
+{% block header %}
+    <div id="banner" class="hide">
+    <div id="dismiss-btn" class="dismiss"></div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/">Create New Droplet!</a></li>
+      </ul>
+    </nav>
+    <h1>Vera | Read Droplets</h1>
+    <p>Delete one or many! Enter passcode before executing DELETE. Markdown is <strong>not</strong> rendered!</p>
+    <p><strong>NOTE:</strong> Deletion is a privileged operation for admins only.</p>
+    <p>Flagged droplets are marked by 🟢</p>
+{% endblock %}
+
+
+{% block main %}
+    <ul id="list">
+      {% if (payload | length) <= 0 %}
+      <div class="info critical">
+        No droplets! Go create some!
+      </div>
+      {% else %}
+      {% for droplet in payload %}
+      <div>
+        <input 
+          type="checkbox"
+          id="{{ droplet._id }}"
+          class="visually-hidden toggle">
+        </input>
+          <div class="inner-checkbox-div"></div>
+          <label for="{{ droplet._id }}">
+          <div class="delete-droplet-div">
+            <div>{{droplet.body}}</div>
+            <div>{{droplet.ts}}</div>
+          </div>
+          </label>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </ul>
+
+    <div class="row">
+          <div class="col-25">
+            <label for="password">Passcode</label>
+          </div>
+          <div class="col-75">
+            <input type="password" id="password" name="password" placeholder="******">
+          </div>
+    </div>
+    <button id="confirm">DELETE!</button>
+
+    {% block scripts %}
+      <script src="./js/delete.js"></script>
+    {% endblock %}
+{% endblock %}
+
+
+{% block footer %}
+  {% include "partials/footer.njk" %}
+{% endblock %}
