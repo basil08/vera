@@ -73,7 +73,6 @@ app.post("/delete", async (req, res, next) => {
       }
     });
 
-    console.log(dbResponse);
     // TODO: not working as expected. Look into it :)
     const deleteStatus = encodeURIComponent(dbResponse.deletedCount);
     res.send(dbResponse);
@@ -104,8 +103,8 @@ app.post('/create', async (req, res) => {
       .map(url => url.trim());
   }
 
-  const now = new Date().toLocaleString();
-
+  const now = new Date(body.datetime).toISOString();
+  
   if (body.password !== process.env.PASS) {
     return res.status(403).send("Forbidden! This is a privileged operation!");
   }
@@ -116,7 +115,7 @@ app.post('/create', async (req, res) => {
     likes: 0,
     imgs: body.imgs ? imageURLs : [],
     urls: [],
-    ts: body.datetime
+    ts: now
   });
 
   await droplet.save();

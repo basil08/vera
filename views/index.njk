@@ -20,7 +20,7 @@
 
  {% block scripts %}
   <script>
-      document.getElementById("datetime").value = new Date().toLocaleString();
+      document.getElementById("datetime").value = new Date().toISOString();
   </script>
  {% endblock %}
 {% endblock %}
