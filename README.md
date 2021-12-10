@@ -56,6 +56,8 @@ A test version of Vera is hosted on the awesome [Deta][2] platform. If you're a 
 2. Implement JWT Authentication middleware.   
 3. Design: Redesign UI    
 4. Migrate codebase to TypeScript    
+5. Export data functionality.
+6. Markdown rendering on /delete
 ## CONTRIBUTE   
 
 Glad that you're interested in supporting Vera!  
