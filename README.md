@@ -46,7 +46,7 @@ A test version of Vera is hosted on the awesome [Deta][2] platform. If you're a 
 [] BE: Implement /update   
 [] UI: Style navbar    
 [] UI: Implement Like functionality   
-[] On each new droplet creation, trigger build action using GH API    
+[X] On each new droplet creation, trigger build action using GH API    
 [] Refactor: Organize routes into a module (`app.use("/", routes)`)   
 [] Add CONTRIBUTING, LICENSE, and links to them in README    
 
@@ -56,13 +56,14 @@ A test version of Vera is hosted on the awesome [Deta][2] platform. If you're a 
 2. Implement JWT Authentication middleware.   
 3. Design: Redesign UI    
 4. Migrate codebase to TypeScript    
-5. Export data functionality.
-6. Markdown rendering on /delete
+5. Export data functionality.   
+6. Markdown rendering on /delete  
+
 ## CONTRIBUTE   
 
 Glad that you're interested in supporting Vera!  
 
-We accept technical code contributions (see Issues tab), documentation, and even examples. Vera is written in JavaScript, Express, Mongoose (MongoDB) on the backend and vanilla HTML/CSS on the frontend it offers. We are planning to migrate to TypeScript and a templating engine in the future. Read the [CONTRIBUTING.md][6] before opening a PR!    
+We accept technical code contributions (see Issues tab), documentation, and even examples. Vera is written in JavaScript, Express, Mongoose (MongoDB) on the backend and vanilla HTML/CSS on the frontend it offers. We use [nunjucks][5] as our templating engine. We are planning to migrate to TypeScript and a templating engine in the future. Read the [CONTRIBUTING.md][6] before opening a PR!    
 
 ## LICENSE 
 
