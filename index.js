@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const fetch = require("node-fetch");
 const path = require("path");
 const nunjucks = require("nunjucks");
 const app = express();
@@ -73,9 +74,12 @@ app.post("/delete", async (req, res, next) => {
       }
     });
 
+    const response = await triggerGHBuild("droplet_deletion_build");
+
     // TODO: not working as expected. Look into it :)
     const deleteStatus = encodeURIComponent(dbResponse.deletedCount);
-    res.send(dbResponse);
+
+    res.redirect("/delete?status=success");
   } catch (err) {
     console.err(err);
     next();
@@ -120,8 +124,9 @@ app.post('/create', async (req, res) => {
 
   await droplet.save();
 
-  const statusString = encodeURIComponent("success");
-  return res.redirect("/?status=" + statusString);
+  const response = await triggerGHBuild("droplet_creation_build");
+
+  return res.redirect("/?status=success");
 })
 
 app.use('/', (req, res, next) => {
@@ -136,5 +141,27 @@ if (process.env.ENV === 'test') {
   })
 }
 
+
+const triggerGHBuild = async (eventName) => {
+  const OWNER = process.env.GITHUB_OWNER;
+  const REPO = process.env.GITHUB_REPO;
+  const EVENT_NAME = `${eventName} ${new Date().toUTCString()}`
+
+  let response = null;
+  try {
+    response = await fetch(
+      `https://api.github.com/repos/${OWNER}/${REPO}/dispatches`, {
+      method: 'POST',
+      headers: {
+        'authorization': `Bearer ${process.env.GITHUB_ACTIONS_ACCESS_TOKEN}`
+      },
+      body: `{ "event_type": "${EVENT_NAME}" }`
+    })
+  } catch (err) {
+    console.err(err);
+  }
+
+  return response;
+}
 // export the 'app'
 module.exports = app;
